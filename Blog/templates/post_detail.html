@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.short_description }}</p>
+    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+    <p>{{ post.full_description }}</p>
+
+<h3>Comments</h3>
+<ul>
+  {% for comment in paginated_comments %}
+      <p>
+        {% if comment.is_anonymous %}
+          Anonymous User
+        {% else %}
+          {{ comment.author.username }}
+        {% endif %}
+      </p>
+      <p style="border: 1px solid #ccc; padding: 10px;">{{ comment.content }}</p>
+  {% endfor %}
+</ul>
+      <div class="pagination">
+    <span class="step-links">
+        {% if paginated_comments.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ paginated_posts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ paginated_comments.number }} of {{ paginated_comments.paginator.num_pages }}.
+        </span>
+
+        {% if paginated_comments.has_next %}
+            <a href="?page={{ paginated_comments.next_page_number }}">next</a>
+            <a href="?page={{ paginated_comments.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<h3>Add a Comment</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
+<hr>
+    <h3>Author: {{ post.author.username }}</h3>
+</body>
+{% endblock %}
+</html>
+

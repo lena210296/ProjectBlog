@@ -1,0 +1,26 @@
+[
+  {
+    "model": "Blog.UserProfile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget gravida odio, quis fringilla magna."
+    }
+  },
+  {
+    "model": "Blog.UserProfile",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "bio": "Praesent congue risus a massa malesuada, non sagittis nisl efficitur. Nunc auctor neque sed sem faucibus."
+    }
+  },
+  {
+    "model": "Blog.UserProfile",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "bio": "Integer tincidunt ipsum vitae eros consequat, in vehicula sapien consectetur."
+    }
+  }
+ ]

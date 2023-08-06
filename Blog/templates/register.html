@@ -1,0 +1,12 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'Blog/styles.css' %}">
+
+<!DOCTYPE html>
+<html>
+<h2>Sign up to the Blog</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Register</button>
+</form>
+<html>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Account Profile</h2>
+<p>Username: {{ user_profile.user.username }}</p>
+<p>Email: {{ user_profile.user.email }}</p>
+<p>Bio: {{ user_profile.bio }}</p>
+{% if user_profile.profile_picture %}
+<img src="{{ user_profile.profile_picture.url }}" alt="{{ user_profile.user.username }}" height="100">
+{% else %}
+    <p>Picture: Add your profile picture</p>
+{% endif %}
+<p><a href="{% url 'edit_profile' %}"><button>Edit Profile</button></a></p>
+<p><a href="{%url 'all_posts' %}"><button>View All Posts</button></a></p>
+<p><a href="{%url 'user_posts' %}"}><button>View and Edit Your Posts</button></a></p>
+<p><a href="{%url 'create_post' %}"}><button>Create New Post</button></a></p>
+<p><a href="{% url 'logout' %}"><button>Logout</button></a></p>
+{% endblock %}

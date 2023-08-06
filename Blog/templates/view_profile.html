@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ user_profile.user.username }}'s Profile</h2>
+<p>Bio: {{ user_profile.bio }}</p>
+{% if user_profile.profile_picture %}
+    <img src="{{ user_profile.profile_picture.url }}" alt="{{ user_profile.user.username }}" height="100">
+{% else %}
+    <p>No profile picture available</p>
+{% endif %}
+
+</body>
+{% endblock %}
+</html>
