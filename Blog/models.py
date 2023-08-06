@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -8,7 +9,7 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=200)
     short_description = models.CharField(max_length=500)
-    image = models.ImageField(upload_to='post_images/')  # Assumes you have 'Pillow' installed for image handling
+    image = models.ImageField(upload_to='post_images/')
     full_description = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')

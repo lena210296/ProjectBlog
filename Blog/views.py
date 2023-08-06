@@ -15,7 +15,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # Redirect to the login page after successful registration
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
@@ -28,9 +28,9 @@ def create_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            if 'submit' in request.POST:  # The user chose to submit the post
+            if 'submit' in request.POST:
                 post.status = 'published'
-            else:  # The user chose to save the post as a draft
+            else:
                 post.status = 'draft'
             post.save()
 
@@ -43,14 +43,10 @@ def create_post(request):
     return render(request, 'create_post.html', {'form': form})
 
 
-# Create your views here.
-
 @login_required
 def edit_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     if post.author != request.user:
-        # If the user is not the author of the post, redirect to a different view or display an error message.
-        # For simplicity, we'll redirect to the post detail view.
         return redirect('user_posts')
 
     if request.method == 'POST':
@@ -171,7 +167,6 @@ def contact_admin(request):
 
             return JsonResponse({'success': True})
         else:
-            # Return a JSON response with form errors
             return JsonResponse({'errors': form.errors}, status=400)
 
     else:
